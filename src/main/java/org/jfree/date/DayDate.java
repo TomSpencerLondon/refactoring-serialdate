@@ -58,6 +58,8 @@
 
 package org.jfree.date;
 
+import static org.jfree.date.DayDate.Month.JANUARY;
+
 import java.io.Serializable;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
@@ -113,6 +115,10 @@ public abstract class DayDate implements Comparable,
                 }
             }
             throw new IllegalArgumentException("Invalid month index " + monthIndex);
+        }
+
+        public int toInt() {
+            return index;
         }
     }
 
@@ -353,20 +359,20 @@ public abstract class DayDate implements Comparable,
      *         valid month.
      */
     public static boolean isValidMonthCode(final int code) {
-
-        switch(code) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
+        Month month = Month.make(code);
+        switch(month) {
+            case JANUARY:
+            case FEBRUARY:
+            case MARCH:
+            case APRIL:
+            case MAY:
+            case JUNE:
+            case JULY:
+            case AUGUST:
+            case SEPTEMBER:
+            case OCTOBER:
+            case NOVEMBER:
+            case DECEMBER:
                 return true;
             default: 
                 return false;
@@ -382,20 +388,20 @@ public abstract class DayDate implements Comparable,
      * @return the quarter that the month belongs to.
      */
     public static int monthCodeToQuarter(final int code) {
-
-        switch(code) {
-            case 1:
-            case 2:
-            case 3: return 1;
-            case 4:
-            case 5:
-            case 6: return 2;
-            case 7:
-            case 8:
-            case 9: return 3;
-            case 10:
-            case 11:
-            case 12: return 4;
+        Month month = Month.make(code);
+        switch(month) {
+            case JANUARY:
+            case FEBRUARY:
+            case MARCH: return 1;
+            case APRIL:
+            case MAY:
+            case JUNE: return 2;
+            case JULY:
+            case AUGUST:
+            case SEPTEMBER: return 3;
+            case OCTOBER:
+            case NOVEMBER:
+            case DECEMBER: return 4;
             default: throw new IllegalArgumentException(
                 "SerialDate.monthCodeToQuarter: invalid month code.");
         }
