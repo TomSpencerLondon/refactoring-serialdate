@@ -1,5 +1,13 @@
+#### Code from:
+https://github.com/jfree/jcommon
+
+#### Refactoring: Chapter 16 Clean Code
+
+
 THE JCOMMON CLASS LIBRARY: Version 1.0.24
 =========================================
+
+
 
 18 February 2017
 
