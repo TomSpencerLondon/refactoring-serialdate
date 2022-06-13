@@ -86,6 +86,36 @@ import java.util.GregorianCalendar;
 public abstract class DayDate implements Comparable,
                                             Serializable {
 
+    public static enum Month {
+        JANUARY(1),
+        FEBRUARY(2),
+        MARCH(3),
+        APRIL(4),
+        MAY(5),
+        JUNE(6),
+        JULY(7),
+        AUGUST(8),
+        SEPTEMBER(9),
+        OCTOBER(10),
+        NOVEMBER(11),
+        DECEMBER(12);
+
+        private final int index;
+
+        Month(int index) {
+            this.index = index;
+        }
+
+        public static Month make(int monthIndex) {
+            for (Month m : Month.values()) {
+                if (m.index == monthIndex) {
+                    return m;
+                }
+            }
+            throw new IllegalArgumentException("Invalid month index " + monthIndex);
+        }
+    }
+
     /** For serialization. */
     private static final long serialVersionUID = -293716040467423637L;
     
@@ -325,18 +355,18 @@ public abstract class DayDate implements Comparable,
     public static boolean isValidMonthCode(final int code) {
 
         switch(code) {
-            case JANUARY: 
-            case FEBRUARY: 
-            case MARCH: 
-            case APRIL: 
-            case MAY: 
-            case JUNE: 
-            case JULY: 
-            case AUGUST: 
-            case SEPTEMBER: 
-            case OCTOBER: 
-            case NOVEMBER: 
-            case DECEMBER: 
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
                 return true;
             default: 
                 return false;
@@ -354,18 +384,18 @@ public abstract class DayDate implements Comparable,
     public static int monthCodeToQuarter(final int code) {
 
         switch(code) {
-            case JANUARY: 
-            case FEBRUARY: 
-            case MARCH: return 1;
-            case APRIL: 
-            case MAY: 
-            case JUNE: return 2;
-            case JULY: 
-            case AUGUST: 
-            case SEPTEMBER: return 3;
-            case OCTOBER: 
-            case NOVEMBER: 
-            case DECEMBER: return 4;
+            case 1:
+            case 2:
+            case 3: return 1;
+            case 4:
+            case 5:
+            case 6: return 2;
+            case 7:
+            case 8:
+            case 9: return 3;
+            case 10:
+            case 11:
+            case 12: return 4;
             default: throw new IllegalArgumentException(
                 "SerialDate.monthCodeToQuarter: invalid month code.");
         }
@@ -544,7 +574,7 @@ public abstract class DayDate implements Comparable,
     public static int lastDayOfMonth(final int month, final int yyyy) {
 
         final int result = LAST_DAY_OF_MONTH[month];
-        if (month != FEBRUARY) {
+        if (month != 2) {
             return result;
         }
         else if (isLeapYear(yyyy)) {
